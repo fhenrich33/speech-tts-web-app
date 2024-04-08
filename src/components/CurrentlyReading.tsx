@@ -22,12 +22,25 @@ export const CurrentlyReading = ({
         currentWordRange[1]
       )
     : "";
+
   const currentSentence = sentences.length ? sentences[currentSentenceIdx] : "";
+
+  const currentContent = currentSentence
+    .split("")
+    .toSpliced(
+      currentWordRange[0],
+      currentWordRange[1],
+      `<span data-testid="current-word" style="color: red">${currentWord}</span>`
+    )
+    .join("");
 
   return (
     <div data-testid="currently-reading">
-      <span data-testid="current-word">{currentWord}</span>
-      <p data-testid="current-sentence">{currentSentence}</p>
+      <p
+        data-testid="current-sentence"
+        dangerouslySetInnerHTML={{ __html: currentContent }}
+      ></p>
+      <p>{sentences.join(" ")}</p>
     </div>
   );
 };
