@@ -25,14 +25,13 @@ export const CurrentlyReading = ({
 
   const currentSentence = sentences.length ? sentences[currentSentenceIdx] : "";
 
-  const currentContent = currentSentence
-    .split("")
-    .toSpliced(
-      currentWordRange[0],
-      currentWordRange[1],
-      `<span data-testid="current-word" style="color: red">${currentWord}</span>`
-    )
-    .join("");
+  const sentenceHead = currentSentence.substring(0, currentWordRange[0]);
+  const sentenceTail = currentSentence.substring(
+    currentWordRange[1],
+    currentSentence.length
+  );
+
+  const currentContent = `${sentenceHead}<span data-testid="current-word" style="color: red">${currentWord}</span>${sentenceTail}`;
 
   return (
     <div data-testid="currently-reading">
