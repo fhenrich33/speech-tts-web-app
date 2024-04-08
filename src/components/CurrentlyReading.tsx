@@ -16,5 +16,18 @@ export const CurrentlyReading = ({
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
-  return <div data-testid="currently-reading"></div>;
+  const currentWord = sentences
+    .join()
+    .slice(currentWordRange[0], currentWordRange[1]);
+  const currentSentence = sentences[currentSentenceIdx];
+
+  console.log("SENTENCES", sentences.join());
+  console.log("WORD", currentWord);
+
+  return (
+    <div data-testid="currently-reading">
+      <p data-testid="currently-sentence">{currentSentence}</p>
+      <span data-testid="currently-word">{currentWord}</span>
+    </div>
+  );
 };
