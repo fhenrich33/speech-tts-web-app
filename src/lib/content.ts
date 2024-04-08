@@ -18,6 +18,8 @@ const fetchContent = async (url = API_URL): Promise<Content> => {
  * Avoid using DOMParser for implementing this function.
  */
 const parseContentIntoSentences = (content: string) => {
+  if (!content.startsWith("<speak>")) throw new Error("SSML is invalid.");
+
   return content
     .replaceAll("<speak>", "")
     .replaceAll("</speak>", "")
