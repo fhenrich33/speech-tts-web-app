@@ -1,4 +1,4 @@
-# Speechify Web Functional Test
+# Speech Web Functional Test
 
 ## Project Overview
 
