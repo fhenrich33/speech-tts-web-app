@@ -6,6 +6,7 @@ import { CurrentlyReading } from "./components/CurrentlyReading";
 import { fetchContent, parseContentIntoSentences } from "./lib/content";
 import { useSpeech } from "./lib/useSpeech";
 
+// TODO: fix parser, fix word range, highlight word in sentence, display sentence correctly.
 function App() {
   const [sentences, setSentences] = useState<Array<string>>([]);
   const { play, pause, playbackState, currentSentenceIdx, currentWordRange } =
