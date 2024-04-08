@@ -1,7 +1,7 @@
 const API_URL = "http://localhost:5174/content";
 
 type Content = {
-    content: string
+  content: string
 }
 
 /**
@@ -9,8 +9,8 @@ type Content = {
  * In case of an error, return content as "<speak><s>There was an error</s></speak>"
  */
 const fetchContent = async (url = API_URL): Promise<Content> => {
-    const res = await fetch(url);
-    return res.json();
+  const res = await fetch(url);
+  return await res.json();
 };
 
 /**
@@ -18,12 +18,14 @@ const fetchContent = async (url = API_URL): Promise<Content> => {
  * Avoid using DOMParser for implementing this function.
  */
 const parseContentIntoSentences = (content: string) => {
-    return content
-        .replaceAll("<speak>", "")
-        .replaceAll("<s>", "")
-        .replaceAll("</speak>", "")
-        .split("</s>")
-        .slice(0, -1);
+  return content
+    .replaceAll("<speak>", "")
+    .replaceAll("</speak>", "")
+    .replaceAll("<p>", "")
+    .replaceAll("</p>", "")
+    .split("<s>")
+    .map(s => s.split("</s>")[0])
+    .slice(1)
 };
 
 export { fetchContent, parseContentIntoSentences };
