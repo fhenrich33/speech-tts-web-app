@@ -12,7 +12,7 @@ import { PlayingState, createSpeechEngine } from './speech';
 */
 const useSpeech = (sentences: Array<string>) => {
   const [currentSentenceIdx, setCurrentSentenceIdx] = useState(0);
-  const [currentWordRange, setCurrentWordRange] = useState([0, 0]);
+  const [currentWordRange, setCurrentWordRange] = useState<[number, number]>([0, 0]);
 
   const [playbackState, setPlaybackState] = useState<PlayingState>("paused");
 
@@ -20,10 +20,11 @@ const useSpeech = (sentences: Array<string>) => {
     onBoundary: (e) => {
       console.log("onBoundary", e);
       setCurrentWordRange([e.charIndex, e.charIndex + e.charLength]);
-      setCurrentSentenceIdx(currentSentenceIdx < sentences.length ? currentSentenceIdx + 1 : 0);
     },
     onEnd: (e) => {
       console.log("onEnd", e);
+      setCurrentSentenceIdx(currentSentenceIdx < sentences.length - 1 ? currentSentenceIdx + 1 : 0);
+      setCurrentWordRange([0, 0]);
     },
     onStateUpdate: (e) => {
       console.log("onStateUpdate", e);
@@ -33,16 +34,18 @@ const useSpeech = (sentences: Array<string>) => {
 
   const play = () => {
     console.log("play pressed")
-    engine.load(sentences[currentSentenceIdx]);
+    engine.load(sentences[currentSentenceIdx || 0]);
     engine.play();
   };
 
   const pause = () => {
+    console.log("pause pressed")
     engine.pause();
   };
 
   useEffect(() => {
     setCurrentSentenceIdx(0);
+    setCurrentWordRange([0, 0]);
   }, [sentences])
 
   return {

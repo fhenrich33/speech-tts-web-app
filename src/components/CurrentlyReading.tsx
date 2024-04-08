@@ -8,26 +8,26 @@
  * See example.gif for an example of how the component should look like, feel free to style it however you want as long as the testID exists
  */
 export const CurrentlyReading = ({
-  currentWordRange,
-  currentSentenceIdx,
+  currentWordRange = [0, 0],
+  currentSentenceIdx = 0,
   sentences,
 }: {
   currentWordRange: [number, number];
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
-  const currentWord = sentences
-    .join()
-    .slice(currentWordRange[0], currentWordRange[1]);
-  const currentSentence = sentences[currentSentenceIdx];
-
-  console.log("SENTENCES", sentences.join());
-  console.log("WORD", currentWord);
+  const currentWord = sentences.length
+    ? sentences[currentSentenceIdx].slice(
+        currentWordRange[0],
+        currentWordRange[1]
+      )
+    : "";
+  const currentSentence = sentences.length ? sentences[currentSentenceIdx] : "";
 
   return (
     <div data-testid="currently-reading">
-      <p data-testid="currently-sentence">{currentSentence}</p>
-      <span data-testid="currently-word">{currentWord}</span>
+      <span data-testid="current-word">{currentWord}</span>
+      <p data-testid="current-sentence">{currentSentence}</p>
     </div>
   );
 };
