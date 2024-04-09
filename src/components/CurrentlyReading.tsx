@@ -33,15 +33,16 @@ export const CurrentlyReading = ({
   const currentContent =
     currentSentence === currentWord
       ? currentSentence
-      : `${sentenceHead}<span data-testid="current-word" style="color: red">${currentWord}</span>${sentenceTail}`;
+      : `${sentenceHead}<span data-testid="current-word" class="currentword">${currentWord}</span>${sentenceTail}`;
 
   return (
-    <div data-testid="currently-reading">
+    <div data-testid="currently-reading" className="currently-reading">
       <p
         data-testid="current-sentence"
+        className="currently-reading-text"
         dangerouslySetInnerHTML={{ __html: currentContent }}
       ></p>
-      <p>{sentences.join(" ")}</p>
+      <p className="currently-reading-text">{sentences.join(" ")}</p>
     </div>
   );
 };
