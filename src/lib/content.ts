@@ -10,6 +10,10 @@ type Content = {
  */
 const fetchContent = async (url = API_URL): Promise<Content> => {
   const res = await fetch(url);
+
+  if (!res.ok)
+    return { content: "<speak><s>There was an error</s></speak>" };
+
   return await res.json();
 };
 
