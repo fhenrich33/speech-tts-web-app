@@ -7,11 +7,11 @@ import { fetchContent, parseContentIntoSentences } from "./lib/content";
 import { useSpeech } from "./lib/useSpeech";
 
 /**
-TODO: 
-* - Playback order of events
-* - Highlight word in sentence
-* - Out of bounds bug(?)
-* - Clear logs.
+* @todo
+* - Playback order of event lifecycle
+* - Range bug
+* - Use splice on highlight?
+* - Fix failing specs due bad config, mocks: useSpeech, fetch?
 */
 function App() {
   const [sentences, setSentences] = useState<Array<string>>([]);
@@ -45,23 +45,6 @@ function App() {
           state={playbackState}
         />
       </div>
-      {/* DELETE AFTER DONE. */}
-      <br />
-      <br />
-      <div>
-        <b>DEBUG</b>
-        <br />
-        sentences: {JSON.stringify(sentences || [], null, 2)}
-        <br />
-        current sentence index: {currentSentenceIdx || 0}
-        <br />
-        current sentence: {sentences[currentSentenceIdx || 0]}
-        <br />
-        current word range: {JSON.stringify(currentWordRange || [], null, 2)}
-        <br />
-        playback state: {playbackState}
-      </div>
-      {/* DELETE AFTER DONE. */}
     </div>
   );
 }

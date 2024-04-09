@@ -18,28 +18,23 @@ const useSpeech = (sentences: Array<string>) => {
 
   const engine = createSpeechEngine({
     onBoundary: (e) => {
-      console.log("onBoundary", e);
       setCurrentWordRange([e.charIndex, e.charIndex + e.charLength]);
     },
     onEnd: (e) => {
-      console.log("onEnd", e);
       setCurrentSentenceIdx(currentSentenceIdx < sentences.length - 1 ? currentSentenceIdx + 1 : 0);
       setCurrentWordRange([0, 0]);
     },
     onStateUpdate: (e) => {
-      console.log("onStateUpdate", e);
       setPlaybackState(e);
     },
   })
 
   const play = () => {
-    console.log("play pressed")
     engine.load(sentences[currentSentenceIdx || 0]);
     engine.play();
   };
 
   const pause = () => {
-    console.log("pause pressed")
     engine.pause();
   };
 
