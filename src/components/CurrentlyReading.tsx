@@ -16,22 +16,24 @@ export const CurrentlyReading = ({
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
+  const [headRange, tailRange] = currentWordRange;
+
   const currentWord = sentences.length
-    ? sentences[currentSentenceIdx].slice(
-        currentWordRange[0],
-        currentWordRange[1]
-      )
+    ? sentences[currentSentenceIdx].slice(headRange, tailRange)
     : "";
 
   const currentSentence = sentences.length ? sentences[currentSentenceIdx] : "";
 
-  const sentenceHead = currentSentence.substring(0, currentWordRange[0]);
+  const sentenceHead = currentSentence.substring(0, headRange);
   const sentenceTail = currentSentence.substring(
-    currentWordRange[1],
+    tailRange,
     currentSentence.length
   );
 
-  const currentContent = `${sentenceHead}<span data-testid="current-word" style="color: red">${currentWord}</span>${sentenceTail}`;
+  const currentContent =
+    currentSentence === currentWord
+      ? currentSentence
+      : `${sentenceHead}<span data-testid="current-word" style="color: red">${currentWord}</span>${sentenceTail}`;
 
   return (
     <div data-testid="currently-reading">
