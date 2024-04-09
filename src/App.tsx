@@ -8,7 +8,6 @@ import { useSpeech } from "./lib/useSpeech";
 
 /**
  * @todo
- * - Playback order of event lifecycle
  * - Use splice on highlight?
  * - Fix failing specs due bad config, mocks: useSpeech, fetch?
  */

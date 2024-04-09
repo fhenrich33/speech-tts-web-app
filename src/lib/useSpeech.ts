@@ -30,7 +30,7 @@ const useSpeech = (sentences: Array<string>) => {
   })
 
   const play = () => {
-    engine.load(sentences[currentSentenceIdx || 0]);
+    engine.load(sentences[currentSentenceIdx]);
     engine.play();
   };
 
