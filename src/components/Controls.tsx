@@ -22,7 +22,7 @@ export const Controls = ({
     switch (true) {
       case state === "initialized" || state === "playing":
         return "Pause";
-      case state === "initialized" || state === "playing":
+      case state === "paused" || state === "ended":
         return "Play";
       default:
         return "Play";
@@ -34,7 +34,7 @@ export const Controls = ({
       case state === "initialized" || state === "playing":
         pause();
         break;
-      case state === "initialized" || state === "playing":
+      case state === "paused" || state === "ended":
         play();
         break;
       default:
