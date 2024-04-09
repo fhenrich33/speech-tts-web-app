@@ -10,19 +10,17 @@
 export const CurrentlyReading = ({
   currentWordRange = [0, 0],
   currentSentenceIdx = 0,
-  sentences,
+  sentences = [""],
 }: {
   currentWordRange: [number, number];
   currentSentenceIdx: number;
   sentences: string[];
 }) => {
   const [headRange, tailRange] = currentWordRange;
+  const index = currentSentenceIdx <= sentences.length ? currentSentenceIdx : 0;
 
-  const currentWord = sentences.length
-    ? sentences[currentSentenceIdx].slice(headRange, tailRange)
-    : "";
-
-  const currentSentence = sentences.length ? sentences[currentSentenceIdx] : "";
+  const currentWord = sentences[index].slice(headRange, tailRange);
+  const currentSentence = sentences[index];
 
   const sentenceHead = currentSentence.substring(0, headRange);
   const sentenceTail = currentSentence.substring(

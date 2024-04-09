@@ -7,12 +7,11 @@ import { fetchContent, parseContentIntoSentences } from "./lib/content";
 import { useSpeech } from "./lib/useSpeech";
 
 /**
-* @todo
-* - Playback order of event lifecycle
-* - Range bug
-* - Use splice on highlight?
-* - Fix failing specs due bad config, mocks: useSpeech, fetch?
-*/
+ * @todo
+ * - Playback order of event lifecycle
+ * - Use splice on highlight?
+ * - Fix failing specs due bad config, mocks: useSpeech, fetch?
+ */
 function App() {
   const [sentences, setSentences] = useState<Array<string>>([]);
   const { play, pause, playbackState, currentSentenceIdx, currentWordRange } =
