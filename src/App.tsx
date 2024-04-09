@@ -8,6 +8,7 @@ import { useSpeech } from "./lib/useSpeech";
 
 /**
  * @todo
+ * - Improve parser?
  * - Use splice on highlight?
  * - Fix failing specs due bad config, mocks: useSpeech, fetch?
  */
